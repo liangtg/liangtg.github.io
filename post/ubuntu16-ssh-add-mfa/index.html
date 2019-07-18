@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>second &middot; My New Hugo Site</title>
+  <title>ubuntu16.04 ssh 添加两步验证 &middot; My New Hugo Site</title>
 
   
   <link type="text/css" rel="stylesheet" href="https://liangtg.github.io/css/print.css" media="print">
@@ -49,10 +49,53 @@
 
     <main class="content container">
     <div class="post">
-  <h1>second</h1>
-  <time datetime=2019-05-09T16:48:45&#43;0800 class="post-date">Thu, May 9, 2019</time>
-  <p>what happened?
-i do not know&hellip;</p>
+  <h1>ubuntu16.04 ssh 添加两步验证</h1>
+  <time datetime=2019-07-18T17:06:30&#43;0800 class="post-date">Thu, Jul 18, 2019</time>
+  
+
+<h1 id="ubuntu16-04-ssh-添加两步验证">ubuntu16.04 ssh 添加两步验证</h1>
+
+<h2 id="1-密码登陆">1 密码登陆</h2>
+
+<p>安装:</p>
+
+<pre><code>apt install libpam-google-authenticator
+</code></pre>
+
+<p>运行:</p>
+
+<pre><code>google-authenticator
+</code></pre>
+
+<p>/etc/pam.d/sshd 第一行添加</p>
+
+<pre><code>auth sufficient pam_google_authenticator.so
+</code></pre>
+
+<p>/etc/ssh/sshd  替换</p>
+
+<pre><code>ChallengeResponseAuthentication yes
+</code></pre>
+
+<p>重启</p>
+
+<pre><code>sudo service sshd restart
+</code></pre>
+
+<p>账号密码登陆时需要输入验证码</p>
+
+<h2 id="2-配置密钥登陆时也输入验证码-密码登陆时-不需要密码-需要验证码">2 配置密钥登陆时也输入验证码(密码登陆时,不需要密码,需要验证码)</h2>
+
+<p>/etc/ssh/sshd_config文件最后添加</p>
+
+<pre><code>AuthenticationMethods keyboard-interactive
+</code></pre>
+
+<h2 id="参考">参考</h2>
+
+<p><a href="https://www.wevg.org/archives/ssh-add-mfa/">https://www.wevg.org/archives/ssh-add-mfa/</a>
+<a href="https://www.felix021.com/blog/read.php?2133">https://www.felix021.com/blog/read.php?2133</a>
+<a href="https://www.felix021.com/blog/read.php?2172">https://www.felix021.com/blog/read.php?2172</a></p>
 
 </div>
 

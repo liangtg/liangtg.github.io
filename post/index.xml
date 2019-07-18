@@ -6,10 +6,26 @@
     <description>Recent content in Posts on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 May 2019 16:48:45 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jul 2019 17:06:30 +0800</lastBuildDate>
     
 	<atom:link href="https://liangtg.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ubuntu16.04 ssh 添加两步验证</title>
+      <link>https://liangtg.github.io/post/ubuntu16-ssh-add-mfa/</link>
+      <pubDate>Thu, 18 Jul 2019 17:06:30 +0800</pubDate>
+      
+      <guid>https://liangtg.github.io/post/ubuntu16-ssh-add-mfa/</guid>
+      <description>ubuntu16.04 ssh 添加两步验证 1 密码登陆 安装:
+apt install libpam-google-authenticator  运行:
+google-authenticator  /etc/pam.d/sshd 第一行添加
+auth sufficient pam_google_authenticator.so  /etc/ssh/sshd 替换
+ChallengeResponseAuthentication yes  重启
+sudo service sshd restart  账号密码登陆时需要输入验证码
+2 配置密钥登陆时也输入验证码(密码登陆时,不需要密码,需要验证码) /etc/ssh/sshd_config文件最后添加
+AuthenticationMethods keyboard-interactive  参考 https://www.wevg.org/archives/ssh-add-mfa/ https://www.felix021.com/blog/read.php?2133 https://www.felix021.com/blog/read.php?2172</description>
+    </item>
     
     <item>
       <title>second</title>
